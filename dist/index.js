@@ -59,7 +59,7 @@ function useHiddenFeature(condition) {
     useKeyPress(function (k) {
         if (!condition.keyCombo)
             return;
-        if (condition.keyCombo.length > keysPushedArray.current.length) {
+        if (condition.keyCombo.length <= keysPushedArray.current.length) {
             keysPushedArray.current.splice(0, 1);
         }
         keysPushedArray.current.push(k);

@@ -39,7 +39,7 @@ export function useHiddenFeature(condition: FeatureCondition): boolean {
     // TODO useKeyPress handles changes to keycombo incorrectly. Or not at all.
     useKeyPress((k) => {
         if (!condition.keyCombo) return;
-        if (condition.keyCombo.length > keysPushedArray.current.length) {
+        if (condition.keyCombo.length <= keysPushedArray.current.length) {
             keysPushedArray.current.splice(0, 1);
         }
         keysPushedArray.current.push(k);
