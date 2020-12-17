@@ -44,7 +44,8 @@ function applies(featureCondition, currentKeyCombo) {
         var value = window.localStorage.getItem(featureCondition.localStorage[0]);
         doesApply = doesApply && value === featureCondition.localStorage[1];
     }
-    if (featureCondition.keyCombo && featureCondition.keyCombo.length === currentKeyCombo.length) {
+    if (featureCondition.keyCombo) {
+        doesApply = doesApply && featureCondition.keyCombo.length === currentKeyCombo.length;
         for (var i = 0; i < featureCondition.keyCombo.length; i++) {
             doesApply = doesApply && (featureCondition.keyCombo[i] === currentKeyCombo[i]);
         }
@@ -70,6 +71,7 @@ function useHiddenFeature(condition) {
     react.useEffect(function () {
         setInterval(function () {
             if (applies(condition, keysPushedArray.current)) {
+                keysPushedArray.current.push("done"); // TODO ugly as hell
                 console.log("Activating secret!");
                 setApplies(true);
             }
