@@ -21,7 +21,8 @@ function applies(featureCondition: FeatureCondition, currentKeyCombo: string[]) 
         doesApply = doesApply && value === featureCondition.localStorage[1];
     }
 
-    if (featureCondition.keyCombo && featureCondition.keyCombo.length === currentKeyCombo.length) {
+    if (featureCondition.keyCombo) {
+        doesApply = doesApply && featureCondition.keyCombo.length === currentKeyCombo.length;
         for (let i = 0; i < featureCondition.keyCombo.length; i++) {
             doesApply = doesApply && (featureCondition.keyCombo[i] === currentKeyCombo[i]);
         }
