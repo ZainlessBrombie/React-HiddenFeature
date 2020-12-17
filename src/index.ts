@@ -52,6 +52,7 @@ export function useHiddenFeature(condition: FeatureCondition): boolean {
     useEffect(() => {
         setInterval(() => {
             if (applies(condition, keysPushedArray.current)) {
+                keysPushedArray.current.push("done"); // TODO ugly as hell
                 console.log("Activating secret!");
                 setApplies(true);
             }
